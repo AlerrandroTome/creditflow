@@ -1,0 +1,6 @@
+@creditflow.services.client.api_HostAddress = http://localhost:5033
+
+GET {{creditflow.services.client.api_HostAddress}}/client/
+Accept: application/json
+
+###
