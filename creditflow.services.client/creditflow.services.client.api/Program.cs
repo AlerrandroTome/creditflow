@@ -13,7 +13,7 @@ builder.Services.AddControllers(options => options.Filters.Add(typeof(Validation
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateClienteValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CriarClienteValidator>();
 
 builder.Services.AddInfrastructure(configuration).AddApplication();
 
@@ -31,9 +31,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(options => options
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
 );
 
 app.UseHttpsRedirection();

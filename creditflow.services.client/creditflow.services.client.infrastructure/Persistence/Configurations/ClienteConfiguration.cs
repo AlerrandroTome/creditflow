@@ -9,8 +9,8 @@ namespace creditflow.services.client.infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.HasMany(c => c.Propostas).WithOne().HasForeignKey(c => c.ClienteId);
-            builder.HasMany(c => c.Cartoes).WithOne().HasForeignKey(c => c.ClienteId);
+            builder.HasMany(c => c.Propostas).WithOne().HasForeignKey(c => c.ClienteId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(c => c.Cartoes).WithOne().HasForeignKey(c => c.ClienteId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

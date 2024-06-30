@@ -10,7 +10,7 @@ namespace creditflow.services.client.api.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                var errors = context.ModelState.Where(w => w.Value?.Errors.Count > 0)
+                List<IEnumerable<string>?> errors = context.ModelState.Where(w => w.Value?.Errors.Count > 0)
                                               .Select(w => w.Value?.Errors.Select(w => w.ErrorMessage))
                                               .ToList();
 

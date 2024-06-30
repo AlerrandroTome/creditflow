@@ -2,15 +2,18 @@
 {
     public class Proposta : BaseEntity
     {
-        public Proposta()
+        public Proposta(Guid clienteId, decimal valorCredito, DateTime? dataProposta, string status) 
+            : base(Guid.NewGuid())
         {
-            Id = Guid.NewGuid();
-            DataProposta = DateTime.Now;
+            ClienteId = clienteId;
+            ValorCredito = valorCredito;
+            DataProposta = dataProposta ?? DateTime.Now;
+            Status = status;
         }
 
-        public Guid ClienteId { get; set; }
-        public decimal ValorCredito { get; set; }
-        public DateTime DataProposta { get; set; }
-        public string Status { get; set; }
+        public Guid ClienteId { get; private set; }
+        public decimal ValorCredito { get; private set; }
+        public DateTime DataProposta { get; private set; }
+        public string Status { get; private set; }
     }
 }

@@ -25,7 +25,7 @@ namespace creditflow.services.client.infrastructure
 
         private static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("ClientFlowDb");
+            string connectionString = configuration.GetConnectionString("CreditFlowDb");
             services.AddDbContext<CreditFlowDbContext>(opt => opt.UseSqlServer(connectionString));
 
             return services;

@@ -5,6 +5,12 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "creditflow.services.creditproposal.api", "creditflow.services.creditproposal.api\creditflow.services.creditproposal.api.csproj", "{BEAEE4F9-FED0-4822-964C-D6DD2D863021}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "creditflow.services.creditproposal.application", "creditflow.services.creditproposal.application\creditflow.services.creditproposal.application.csproj", "{3FC6CCDA-8993-4F1E-BB1B-B8AA383CA49D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "creditflow.services.creditproposal.core", "creditflow.services.creditproposal.core\creditflow.services.creditproposal.core.csproj", "{E94196BF-AC16-4237-BC55-48F0E6DBC847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "creditflow.services.creditproposal.infrastructure", "creditflow.services.creditproposal.infrastructure\creditflow.services.creditproposal.infrastructure.csproj", "{3D94F317-04F6-4171-AAE9-571560F3A71B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{BEAEE4F9-FED0-4822-964C-D6DD2D863021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEAEE4F9-FED0-4822-964C-D6DD2D863021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEAEE4F9-FED0-4822-964C-D6DD2D863021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC6CCDA-8993-4F1E-BB1B-B8AA383CA49D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC6CCDA-8993-4F1E-BB1B-B8AA383CA49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC6CCDA-8993-4F1E-BB1B-B8AA383CA49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC6CCDA-8993-4F1E-BB1B-B8AA383CA49D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94196BF-AC16-4237-BC55-48F0E6DBC847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94196BF-AC16-4237-BC55-48F0E6DBC847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94196BF-AC16-4237-BC55-48F0E6DBC847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94196BF-AC16-4237-BC55-48F0E6DBC847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D94F317-04F6-4171-AAE9-571560F3A71B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D94F317-04F6-4171-AAE9-571560F3A71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D94F317-04F6-4171-AAE9-571560F3A71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D94F317-04F6-4171-AAE9-571560F3A71B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

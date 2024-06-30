@@ -5,6 +5,10 @@ namespace creditflow.services.client.application.Services.Interfaces
 {
     public interface IClienteService
     {
-        Task<ClienteViewModel> CreateClientAsync(CreateClienteInputModel inputModel);
+        Task<ClienteViewModel> CriarClienteAsync(CreateClienteInputModel inputModel);
+        Task<ClienteViewModel> AtualizarClienteAsync(UpdateClienteInputModel inputModel);
+        Task<ClienteViewModel> ObterClienteAsync(Guid id);
+        Task<List<ClienteViewModel>> ObterTodosOsClienteAsync();
+        Task<Guid> RemoverClienteAsync(Guid id);
     }
 }

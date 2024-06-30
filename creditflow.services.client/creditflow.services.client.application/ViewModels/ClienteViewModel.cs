@@ -1,12 +1,16 @@
-﻿namespace creditflow.services.client.application.ViewModels
+﻿using creditflow.services.client.core.Entities;
+
+namespace creditflow.services.client.application.ViewModels
 {
     public class ClienteViewModel
     {
-        public ClienteViewModel(string nome, string email, string telefone)
+        public ClienteViewModel(Cliente cliente)
         {
-            Nome = nome;
-            Email = email;
-            Telefone = telefone;
+            Id = cliente.Id;
+            Nome = cliente.Nome;
+            Email = cliente.Email;
+            Telefone = cliente.Telefone;
+            DataCadastro = cliente.DataCadastro;
         }
 
         public Guid Id { get; set; }

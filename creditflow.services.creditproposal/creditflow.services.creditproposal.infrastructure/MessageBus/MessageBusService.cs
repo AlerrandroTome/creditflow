@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using creditflow.services.creditproposal.core.Interfaces;
 
-namespace creditflow.services.client.infrastructure.MessageBus
+namespace creditflow.services.creditproposal.infrastructure.MessageBus
 {
-    internal class MessageBusService
+    public class MessageBusService : IMessageBusService
     {
     }
 }

@@ -16,11 +16,39 @@ namespace creditflow.services.client.api.Controllers
             _clientService = clientService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateClienteInputModel inputModel)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Obter([FromQuery] Guid id)
         {
-            ClienteViewModel cliente = await _clientService.CreateClientAsync(inputModel);
-            return Created(nameof(Post), cliente);
+            ClienteViewModel cliente = await _clientService.ObterClienteAsync(id);
+            return Ok(cliente);
+        }        
+        
+        [HttpGet]
+        public async Task<IActionResult> ObterTodos()
+        {
+            List<ClienteViewModel> cliente = await _clientService.ObterTodosOsClienteAsync();
+            return Ok(cliente);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Criar([FromBody] CreateClienteInputModel inputModel)
+        {
+            ClienteViewModel cliente = await _clientService.CriarClienteAsync(inputModel);
+            return Created(nameof(Criar), cliente);
+        }        
+        
+        [HttpPut]
+        public async Task<IActionResult> Remover([FromBody] UpdateClienteInputModel inputModel)
+        {
+            ClienteViewModel cliente = await _clientService.AtualizarClienteAsync(inputModel);
+            return Ok(cliente);
+        }        
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromBody] Guid id)
+        {
+            await _clientService.RemoverClienteAsync(id);
+            return Ok(id);
         }
     }
 }

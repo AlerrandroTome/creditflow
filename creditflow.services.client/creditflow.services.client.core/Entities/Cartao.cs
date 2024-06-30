@@ -2,19 +2,25 @@
 {
     public class Cartao : BaseEntity
     {
-        public Cartao()
+        public Cartao(Guid clienteId, string numeroCartao, decimal totalCredito, DateTime dataEmissao, DateTime dataValidade, string status) : base(Guid.NewGuid())
         {
-            Id = Guid.NewGuid();
+            ClienteId = clienteId;
+            NumeroCartao = numeroCartao;
+            TotalCredito = totalCredito;
+            DataEmissao = dataEmissao;
+            DataValidade = dataValidade;
+            Status = status;
+
             DataEmissao = DateTime.Now;
             // Todo cartão terá a validade de 10 anos
             DataValidade = DateTime.Now.AddYears(10);
         }
 
-        public Guid ClienteId { get; set; }
-        public string NumeroCartao { get; set; }
-        public decimal TotalCredito { get; set; }
-        public DateTime DataEmissao { get; set; }
-        public DateTime DataValidade { get; set; }
-        public string Status { get; set; }
+        public Guid ClienteId { get; private set; }
+        public string NumeroCartao { get; private set; }
+        public decimal TotalCredito { get; private set; }
+        public DateTime DataEmissao { get; private set; }
+        public DateTime DataValidade { get; private set; }
+        public string Status { get; private set; }
     }
 }

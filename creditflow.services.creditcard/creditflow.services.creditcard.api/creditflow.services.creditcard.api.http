@@ -1,0 +1,6 @@
+@creditflow.services.creditcard.api_HostAddress = http://localhost:5213
+
+GET {{creditflow.services.creditcard.api_HostAddress}}/cartao/
+Accept: application/json
+
+###

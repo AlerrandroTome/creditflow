@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using creditflow.services.creditproposal.core.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace creditflow.services.creditproposal.infrastructure.Persistence
 {
-    internal class CreditFlowDbContext
+    public class CreditFlowDbContext : DbContext
     {
+        public CreditFlowDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        public DbSet<Proposta> Propostas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(typeof(CreditFlowDbContext).Assembly);
+            base.OnModelCreating(builder);
+        }
     }
 }

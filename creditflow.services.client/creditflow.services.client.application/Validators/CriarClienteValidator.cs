@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace creditflow.services.client.application.Validators
 {
-    public class CreateClienteValidator : AbstractValidator<CreateClienteInputModel>
+    public class CriarClienteValidator : AbstractValidator<CreateClienteInputModel>
     {
-        public CreateClienteValidator()
+        public CriarClienteValidator()
         {
             RuleFor(c => c.Email).EmailAddress()
                                  .WithMessage("E-mail não válido!");

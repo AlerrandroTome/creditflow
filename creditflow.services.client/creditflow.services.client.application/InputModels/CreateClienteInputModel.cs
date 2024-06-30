@@ -2,11 +2,12 @@
 {
     public class CreateClienteInputModel
     {
-        public CreateClienteInputModel(string nome, string email, string telefone)
+        public CreateClienteInputModel(string nome, string email, string telefone, decimal valorCredito)
         {
             Nome = nome;
             Email = email;
             Telefone = telefone;
+            ValorCredito = valorCredito;
         }
 
         public string Nome { get; set; }
