@@ -1,4 +1,4 @@
-﻿using creditflow.services.client.core.DTOs;
+﻿using creditflow.services.sharedtypes;
 
 namespace creditflow.services.client.core.Interfaces
 {

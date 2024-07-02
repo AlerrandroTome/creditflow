@@ -1,4 +1,4 @@
-﻿namespace creditflow.services.client.core.DTOs
+﻿namespace creditflow.services.sharedtypes
 {
     public class PropostaDTO
     {

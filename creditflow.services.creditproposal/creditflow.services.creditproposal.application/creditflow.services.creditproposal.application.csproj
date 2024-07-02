@@ -10,11 +10,16 @@
 		<PackageReference Include="FluentValidation" Version="11.9.2" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
 		<PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
-		<PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\creditflow.services.creditproposal.core\creditflow.services.creditproposal.core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="creditflow.services.sharedtypes">
+	    <HintPath>..\..\creditflow.services.sharedtypes\creditflow.services.sharedtypes\bin\Debug\net8.0\creditflow.services.sharedtypes.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

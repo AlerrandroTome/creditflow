@@ -7,12 +7,14 @@ namespace creditflow.services.creditproposal.application.ViewModels
     {
         public PropostaViewModel(Proposta proposta)
         {
+            Id = proposta.Id;
             ClienteId = proposta.ClienteId;
             ValorCredito = proposta.ValorCredito;
             DataProposta = proposta.DataProposta;
             Status = proposta.Status;
         }
 
+        public Guid Id { get; private set; }
         public Guid ClienteId { get; private set; }
         public decimal ValorCredito { get; private set; }
         public DateTime DataProposta { get; private set; }

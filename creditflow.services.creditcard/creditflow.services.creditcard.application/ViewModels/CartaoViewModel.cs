@@ -7,6 +7,7 @@ namespace creditflow.services.creditcard.application.ViewModels
     {
         public CartaoViewModel(Cartao cartao)
         {
+            Id = cartao.Id;
             ClienteId = cartao.ClienteId;
             NumeroCartao = cartao.NumeroCartao;
             TotalCredito = cartao.TotalCredito;
@@ -15,6 +16,7 @@ namespace creditflow.services.creditcard.application.ViewModels
             Status = cartao.Status;
         }
 
+        public Guid Id { get; private set; }
         public Guid ClienteId { get; private set; }
         public string NumeroCartao { get; private set; }
         public decimal TotalCredito { get; private set; }

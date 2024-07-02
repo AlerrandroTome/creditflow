@@ -17,7 +17,7 @@ namespace creditflow.services.creditproposal.api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Obter([FromQuery] Guid id)
+        public async Task<IActionResult> Obter(Guid id)
         {
             PropostaViewModel cliente = await _propostaService.ObterPropostaAsync(id);
             return Ok(cliente);
@@ -31,35 +31,35 @@ namespace creditflow.services.creditproposal.api.Controllers
         }
 
         [HttpGet("TodosPorCliente/{clienteId}")]
-        public async Task<IActionResult> ObterTodosPorCliente([FromQuery] Guid clienteId)
+        public async Task<IActionResult> ObterTodosPorCliente(Guid clienteId)
         {
             List<PropostaViewModel> cliente = await _propostaService.ObterTodasAsPropostasPorClienteAsync(clienteId);
             return Ok(cliente);
         }
 
         [HttpPut("Negar/{id}")]
-        public async Task<IActionResult> Bloquear([FromQuery] Guid id)
+        public async Task<IActionResult> Negar(Guid id)
         {
             PropostaViewModel cartao = await _propostaService.NegarPropostaAsync(id);
             return Ok(cartao);
         }
 
         [HttpPut("Aceitar/{id}")]
-        public async Task<IActionResult> Expirar([FromQuery] Guid id)
+        public async Task<IActionResult> Aceitar(Guid id)
         {
             PropostaViewModel cartao = await _propostaService.AceitarPropostaAsync(id);
             return Ok(cartao);
         }
 
         [HttpPut]
-        public async Task<IActionResult> AtualizarLimite([FromBody] AtualizarValorDePropostaInputModel inputModel)
+        public async Task<IActionResult> AtualizarProposta([FromBody] AtualizarValorDePropostaInputModel inputModel)
         {
             PropostaViewModel cartao = await _propostaService.AtualizarValorDaPropostaAsync(inputModel);
             return Ok(cartao);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remover([FromBody] Guid id)
+        public async Task<IActionResult> Remover(Guid id)
         {
             await _propostaService.RemoverPropostaAsync(id);
             return Ok(id);

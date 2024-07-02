@@ -1,5 +1,5 @@
-﻿using creditflow.services.client.core.DTOs;
-using creditflow.services.client.core.Interfaces;
+﻿using creditflow.services.client.core.Interfaces;
+using creditflow.services.sharedtypes;
 using MassTransit;
 
 namespace creditflow.services.client.application.Consumers

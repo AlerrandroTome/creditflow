@@ -1,8 +1,8 @@
 ﻿namespace creditflow.services.client.application.InputModels
 {
-    public class CreateClienteInputModel
+    public class CriarClienteComPropostaInputModel
     {
-        public CreateClienteInputModel(string nome, string email, string telefone, decimal valorCredito)
+        public CriarClienteComPropostaInputModel(string nome, string email, string telefone, decimal valorCredito)
         {
             Nome = nome;
             Email = email;

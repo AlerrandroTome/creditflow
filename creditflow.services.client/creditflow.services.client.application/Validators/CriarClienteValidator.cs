@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace creditflow.services.client.application.Validators
 {
-    public class CriarClienteValidator : AbstractValidator<CreateClienteInputModel>
+    public class CriarClienteValidator : AbstractValidator<CriarClienteComPropostaInputModel>
     {
         public CriarClienteValidator()
         {

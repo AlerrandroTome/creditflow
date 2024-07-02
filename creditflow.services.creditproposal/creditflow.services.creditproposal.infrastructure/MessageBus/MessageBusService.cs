@@ -14,7 +14,7 @@ namespace creditflow.services.creditproposal.infrastructure.MessageBus
 
         public async Task Publish<T>(string queue, T message) where T : class
         {
-            ISendEndpoint sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"queue:{queue}"));
+            ISendEndpoint sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"exchange:{queue}"));
             await sendEndpoint.Send(message);
         }
     }

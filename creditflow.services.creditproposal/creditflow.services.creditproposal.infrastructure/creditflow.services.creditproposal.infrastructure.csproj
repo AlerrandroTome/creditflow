@@ -9,12 +9,18 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
-    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\creditflow.services.creditproposal.core\creditflow.services.creditproposal.core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="creditflow.services.sharedtypes">
+	    <HintPath>..\..\creditflow.services.sharedtypes\creditflow.services.sharedtypes\bin\Debug\net8.0\creditflow.services.sharedtypes.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

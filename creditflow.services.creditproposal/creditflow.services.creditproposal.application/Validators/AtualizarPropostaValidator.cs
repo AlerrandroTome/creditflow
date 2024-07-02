@@ -7,7 +7,7 @@ namespace creditflow.services.creditproposal.application.Validators
     {
         public AtualizarPropostaValidator()
         {
-            RuleFor(c => c.ValorCredito).LessThanOrEqualTo(0)
+            RuleFor(c => c.ValorCredito).GreaterThan(0)
                                         .WithMessage("O valor é obrigatório e deve ser maior do que 0!");
 
             RuleFor(c => c.Id).NotEmpty()

@@ -8,12 +8,20 @@
 
   <ItemGroup>
 	  <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+	  <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
+	  <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\creditflow.services.creditproposal.application\creditflow.services.creditproposal.application.csproj" />
     <ProjectReference Include="..\creditflow.services.creditproposal.infrastructure\creditflow.services.creditproposal.infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace creditflow.services.client.api.Filters
 {
-    public class ValidationFilter : IAsyncActionFilter
+    public sealed class ValidationFilter : IAsyncActionFilter
     {
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)

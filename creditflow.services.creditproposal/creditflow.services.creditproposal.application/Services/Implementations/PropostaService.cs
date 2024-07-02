@@ -6,7 +6,7 @@ using creditflow.services.creditproposal.core.Exceptions;
 using creditflow.services.creditproposal.core.Repositories;
 using creditflow.services.creditproposal.core.Enums;
 using creditflow.services.creditproposal.core.Interfaces;
-using creditflow.services.creditproposal.core.DTOs;
+using creditflow.services.sharedtypes;
 
 namespace creditflow.services.creditproposal.application.Services.Implementations
 {

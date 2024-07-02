@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="creditflow.services.sharedtypes">
+      <HintPath>..\..\creditflow.services.sharedtypes\creditflow.services.sharedtypes\bin\Debug\net8.0\creditflow.services.sharedtypes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

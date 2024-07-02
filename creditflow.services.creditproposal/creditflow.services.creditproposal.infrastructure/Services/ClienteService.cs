@@ -1,4 +1,4 @@
-﻿using creditflow.services.creditproposal.core.DTOs;
+﻿using creditflow.services.sharedtypes;
 using creditflow.services.creditproposal.core.Interfaces;
 using creditflow.services.creditproposal.infrastructure.MessageBus;
 using Microsoft.Extensions.Options;

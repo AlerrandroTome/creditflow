@@ -17,4 +17,10 @@
     <ProjectReference Include="..\creditflow.services.client.core\creditflow.services.client.core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="creditflow.services.sharedtypes">
+      <HintPath>..\..\creditflow.services.sharedtypes\creditflow.services.sharedtypes\bin\Debug\net8.0\creditflow.services.sharedtypes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

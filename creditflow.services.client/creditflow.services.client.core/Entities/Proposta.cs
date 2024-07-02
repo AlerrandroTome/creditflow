@@ -2,12 +2,12 @@
 {
     public class Proposta : BaseEntity
     {
-        public Proposta(Guid clienteId, decimal valorCredito, DateTime? dataProposta, string status) 
+        public Proposta(Guid clienteId, decimal valorCredito, DateTime dataProposta, string status) 
             : base(Guid.NewGuid())
         {
             ClienteId = clienteId;
             ValorCredito = valorCredito;
-            DataProposta = dataProposta ?? DateTime.Now;
+            DataProposta = dataProposta;
             Status = status;
         }
 

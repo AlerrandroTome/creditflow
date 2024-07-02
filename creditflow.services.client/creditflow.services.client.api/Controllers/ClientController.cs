@@ -17,7 +17,7 @@ namespace creditflow.services.client.api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Obter([FromQuery] Guid id)
+        public async Task<IActionResult> Obter(Guid id)
         {
             ClienteViewModel cliente = await _clientService.ObterClienteAsync(id);
             return Ok(cliente);
@@ -31,10 +31,18 @@ namespace creditflow.services.client.api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar([FromBody] CreateClienteInputModel inputModel)
+        public async Task<IActionResult> Criar([FromBody] CriarClienteComPropostaInputModel inputModel)
         {
             ClienteViewModel cliente = await _clientService.CriarClienteAsync(inputModel);
             return Created(nameof(Criar), cliente);
+        }
+
+
+        [HttpPost("CriarProposta")]
+        public async Task<IActionResult> CriarProposta([FromBody] CriarPropostaParaClienteInputModel inputModel)
+        {
+            await _clientService.CriarPropostaParaCliente(inputModel);
+            return Ok();
         }        
         
         [HttpPut]
@@ -45,7 +53,7 @@ namespace creditflow.services.client.api.Controllers
         }        
         
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromBody] Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _clientService.RemoverClienteAsync(id);
             return Ok(id);

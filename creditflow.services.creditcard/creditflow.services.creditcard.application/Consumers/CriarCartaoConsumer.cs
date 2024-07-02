@@ -1,6 +1,6 @@
-﻿using creditflow.services.client.core.DTOs;
-using creditflow.services.creditcard.application.InputModels;
+﻿using creditflow.services.creditcard.application.InputModels;
 using creditflow.services.creditcard.application.Services.Interfaces;
+using creditflow.services.sharedtypes;
 using MassTransit;
 
 namespace creditflow.services.creditcard.application.Consumers

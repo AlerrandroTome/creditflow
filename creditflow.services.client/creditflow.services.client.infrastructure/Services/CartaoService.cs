@@ -1,6 +1,6 @@
-﻿using creditflow.services.client.core.DTOs;
-using creditflow.services.client.core.Interfaces;
+﻿using creditflow.services.client.core.Interfaces;
 using creditflow.services.client.infrastructure.MessageBus;
+using creditflow.services.sharedtypes;
 using Microsoft.Extensions.Options;
 
 namespace creditflow.services.client.infrastructure.Services

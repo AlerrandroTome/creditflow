@@ -1,11 +1,11 @@
 ﻿using creditflow.services.client.application.InputModels;
 using creditflow.services.client.application.Services.Interfaces;
 using creditflow.services.client.application.ViewModels;
-using creditflow.services.client.core.DTOs;
 using creditflow.services.client.core.Entities;
 using creditflow.services.client.core.Exceptions;
 using creditflow.services.client.core.Interfaces;
 using creditflow.services.client.core.Repositories;
+using creditflow.services.sharedtypes;
 
 namespace creditflow.services.client.application.Services.Implementations
 {
@@ -19,8 +19,13 @@ namespace creditflow.services.client.application.Services.Implementations
             _clientRepository = clientRepository;
             _propostaService = propostaService;
         }
+        public async Task CriarPropostaParaCliente(CriarPropostaParaClienteInputModel inputModel)
+        {
+            PropostaDTO proposta = new PropostaDTO(inputModel.ClientId, inputModel.ValorCredito, DateTime.Now);
+            await _propostaService.CriarProposta(proposta);
+        }
 
-        public async Task<ClienteViewModel> CriarClienteAsync(CreateClienteInputModel inputModel)
+        public async Task<ClienteViewModel> CriarClienteAsync(CriarClienteComPropostaInputModel inputModel)
         {
             Cliente cliente = new Cliente(inputModel.Nome, inputModel.Email, inputModel.Telefone);
 
@@ -74,5 +79,6 @@ namespace creditflow.services.client.application.Services.Implementations
             await _clientRepository.AtualizarAsync(cliente);
             return new ClienteViewModel(cliente);
         }
+
     }
 }

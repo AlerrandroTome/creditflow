@@ -26,14 +26,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configura Masstransit
-builder.Services.Configure<RabbitMQConfig>(opt => configuration.GetSection("RabbitMQConfig"));
+builder.Services.Configure<RabbitMQConfig>(configuration.GetSection("RabbitMQConfig"));
 
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<PropostaAceitaConsumer>();
+
     x.UsingRabbitMq((context, cfg) =>
     {
-        RabbitMQConfig rabbitMqConfig = context.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
+        var rabbitMqConfig = context.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
+
         cfg.Host(rabbitMqConfig.HostName, h =>
         {
             h.Username(rabbitMqConfig.Username);
@@ -43,13 +45,17 @@ builder.Services.AddMassTransit(x =>
         cfg.ReceiveEndpoint(rabbitMqConfig.NotificarPropostaAceitaQueue, ep =>
         {
             ep.ConfigureConsumer<PropostaAceitaConsumer>(context);
+
             ep.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
             ep.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(5)));
-            ep.BindDeadLetterQueue("", rabbitMqConfig.NotificarPropostaAceitaQueueDeadLetter);
-        });
 
+            // Configuração da Dead Letter Queue (DLQ)
+            ep.BindDeadLetterQueue(rabbitMqConfig.NotificarPropostaAceitaQueueDeadLetter, rabbitMqConfig.NotificarPropostaAceitaQueueDeadLetter);
+        });
     });
 });
+
+builder.Services.AddExceptionHandler<ExceptionFilter>();
 
 var app = builder.Build();
 
@@ -59,6 +65,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler( _ => {});
 
 app.UseCors(options => options
                         .AllowAnyOrigin()

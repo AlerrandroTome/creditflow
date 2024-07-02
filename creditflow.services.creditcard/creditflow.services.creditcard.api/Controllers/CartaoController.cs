@@ -17,7 +17,7 @@ namespace creditflow.services.creditcard.api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Obter([FromQuery] Guid id)
+        public async Task<IActionResult> Obter(Guid id)
         {
             CartaoViewModel cliente = await _cartaoService.ObterCartaoAsync(id);
             return Ok(cliente);
@@ -31,21 +31,21 @@ namespace creditflow.services.creditcard.api.Controllers
         }
 
         [HttpGet("TodosPorCliente/{clienteId}")]
-        public async Task<IActionResult> ObterTodosPorCliente([FromQuery] Guid clienteId)
+        public async Task<IActionResult> ObterTodosPorCliente(Guid clienteId)
         {
             List<CartaoViewModel> cliente = await _cartaoService.ObterTodosOsCartoesPorClienteAsync(clienteId);
             return Ok(cliente);
         }
 
         [HttpPut("Bloquear/{id}")]
-        public async Task<IActionResult> Bloquear([FromQuery] Guid id)
+        public async Task<IActionResult> Bloquear(Guid id)
         {
             CartaoViewModel cartao = await _cartaoService.BloquearCartaoAsync(id);
             return Ok(cartao);
         }
         
         [HttpPut("Expirar/{id}")]
-        public async Task<IActionResult> Expirar([FromQuery] Guid id)
+        public async Task<IActionResult> Expirar(Guid id)
         {
             CartaoViewModel cartao = await _cartaoService.ExpirarCartaoAsync(id);
             return Ok(cartao);
@@ -59,7 +59,7 @@ namespace creditflow.services.creditcard.api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remover([FromBody] Guid id)
+        public async Task<IActionResult> Remover(Guid id)
         {
             await _cartaoService.RemoverCartaoAsync(id);
             return Ok(id);
