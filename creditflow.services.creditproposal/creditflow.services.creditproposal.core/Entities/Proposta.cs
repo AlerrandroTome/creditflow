@@ -4,12 +4,12 @@ namespace creditflow.services.creditproposal.core.Entities
 {
     public class Proposta : BaseEntity
     {
-        public Proposta(Guid clienteId, decimal valorCredito, EPropostaStatus status) 
+        public Proposta(Guid clienteId, decimal valorCredito, EPropostaStatus status, DateTime dataProposta) 
             : base(Guid.NewGuid())
         {
             ClienteId = clienteId;
             ValorCredito = valorCredito;
-            DataProposta = DateTime.Now;
+            DataProposta = dataProposta;
             Status = status;
         }
 

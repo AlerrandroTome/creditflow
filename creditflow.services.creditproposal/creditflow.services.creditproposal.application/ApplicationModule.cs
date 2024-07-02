@@ -1,5 +1,4 @@
-﻿using creditflow.services.creditproposal.application.Consumers;
-using creditflow.services.creditproposal.application.Services.Implementations;
+﻿using creditflow.services.creditproposal.application.Services.Implementations;
 using creditflow.services.creditproposal.application.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,8 +8,7 @@ namespace creditflow.services.creditproposal.application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddServices()
-                    .AddConsumers();
+            services.AddServices();
 
             return services;
         }
@@ -18,13 +16,6 @@ namespace creditflow.services.creditproposal.application
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IPropostaService, PropostaService>();
-
-            return services;
-        }
-
-        private static IServiceCollection AddConsumers(this IServiceCollection services)
-        {
-            services.AddHostedService<CreatePropostaConsumer>();
 
             return services;
         }

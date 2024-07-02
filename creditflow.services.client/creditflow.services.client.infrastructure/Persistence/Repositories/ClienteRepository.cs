@@ -23,7 +23,7 @@ namespace creditflow.services.client.infrastructure.Persistence.Repositories
 
         public async Task RemoverAsync(Guid id)
         {
-            Cliente? cliente = _dbContext.Clientes.AsNoTracking().Where(w => w.Id.Equals(id)).FirstOrDefault();
+            Cliente? cliente = await _dbContext.Clientes.AsNoTracking().Where(w => w.Id.Equals(id)).FirstOrDefaultAsync();
             
             if(cliente is null)
             {

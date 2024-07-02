@@ -15,17 +15,17 @@ namespace creditflow.services.creditproposal.infrastructure.Persistence.Reposito
             _dbContext = dbContext;
         }
 
-        public async Task RemoverAsync(Proposta proposta)
+        public async Task CriarAsync(Proposta proposta)
         {
             await _dbContext.Propostas.AddAsync(proposta);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task RemoverAsync(Guid id)
         {
-            Proposta? proposta = _dbContext.Propostas.AsNoTracking().Where(w => w.Id.Equals(id)).FirstOrDefault();
-            
-            if(proposta is null)
+            Proposta? proposta = await _dbContext.Propostas.AsNoTracking().Where(w => w.Id.Equals(id)).FirstOrDefaultAsync();
+
+            if (proposta is null)
             {
                 throw new PropostaNotFoundException();
             }
@@ -63,7 +63,7 @@ namespace creditflow.services.creditproposal.infrastructure.Persistence.Reposito
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task UpdateAsync(Proposta proposta)
+        public async Task AtualizarAsync(Proposta proposta)
         {
             _dbContext.Update(proposta);
             await _dbContext.SaveChangesAsync();

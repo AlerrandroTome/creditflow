@@ -4,6 +4,10 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using creditflow.services.creditcard.infrastructure;
 using creditflow.services.creditcard.application;
+using MassTransit;
+using creditflow.services.creditcard.application.Consumers;
+using creditflow.services.creditcard.infrastructure.Persistence.RabbitMQ;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -20,6 +24,32 @@ builder.Services.AddInfrastructure(configuration).AddApplication();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configura Masstransit
+builder.Services.Configure<RabbitMQConfig>(opt => configuration.GetSection("RabbitMQConfig"));
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<CriarCartaoConsumer>();
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        RabbitMQConfig rabbitMqConfig = context.GetRequiredService<IOptions<RabbitMQConfig>>().Value;
+        cfg.Host(rabbitMqConfig.HostName, h =>
+        {
+            h.Username(rabbitMqConfig.Username);
+            h.Password(rabbitMqConfig.Password);
+        });
+
+        cfg.ReceiveEndpoint(rabbitMqConfig.SolicitarCartaoQueue, ep =>
+        {
+            ep.ConfigureConsumer<CriarCartaoConsumer>(context);
+            ep.UseDelayedRedelivery(r => r.Intervals(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(15), TimeSpan.FromMinutes(30)));
+            ep.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(5)));
+            ep.BindDeadLetterQueue("", rabbitMqConfig.SolicitarCartaoQueueDeadLetter);
+        });
+
+    });
+});
 
 var app = builder.Build();
 

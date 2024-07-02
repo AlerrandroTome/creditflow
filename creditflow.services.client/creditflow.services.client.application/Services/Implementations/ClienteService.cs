@@ -1,8 +1,10 @@
 ﻿using creditflow.services.client.application.InputModels;
 using creditflow.services.client.application.Services.Interfaces;
 using creditflow.services.client.application.ViewModels;
+using creditflow.services.client.core.DTOs;
 using creditflow.services.client.core.Entities;
 using creditflow.services.client.core.Exceptions;
+using creditflow.services.client.core.Interfaces;
 using creditflow.services.client.core.Repositories;
 
 namespace creditflow.services.client.application.Services.Implementations
@@ -10,18 +12,22 @@ namespace creditflow.services.client.application.Services.Implementations
     public class ClienteService : IClienteService
     {
         private readonly IClienteRepository _clientRepository;
+        private readonly IPropostaService _propostaService;
 
-        public ClienteService(IClienteRepository clientRepository)
+        public ClienteService(IClienteRepository clientRepository, IPropostaService propostaService)
         {
             _clientRepository = clientRepository;
+            _propostaService = propostaService;
         }
 
         public async Task<ClienteViewModel> CriarClienteAsync(CreateClienteInputModel inputModel)
         {
             Cliente cliente = new Cliente(inputModel.Nome, inputModel.Email, inputModel.Telefone);
-            await _clientRepository.CriarAsync(cliente);
-            // Enviar para fila do Rabbit
 
+            PropostaDTO proposta = new PropostaDTO(cliente.Id, inputModel.ValorCredito, DateTime.Now);
+            await _propostaService.CriarProposta(proposta);
+
+            await _clientRepository.CriarAsync(cliente);
             return new ClienteViewModel(cliente);
         }
 

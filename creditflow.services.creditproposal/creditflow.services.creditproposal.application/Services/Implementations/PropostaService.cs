@@ -5,22 +5,26 @@ using creditflow.services.creditproposal.core.Entities;
 using creditflow.services.creditproposal.core.Exceptions;
 using creditflow.services.creditproposal.core.Repositories;
 using creditflow.services.creditproposal.core.Enums;
+using creditflow.services.creditproposal.core.Interfaces;
+using creditflow.services.creditproposal.core.DTOs;
 
 namespace creditflow.services.creditproposal.application.Services.Implementations
 {
     public class PropostaService : IPropostaService
     {
         private readonly IPropostaRepository _propostaRepository;
+        private readonly IClienteService _clienteService;
 
-        public PropostaService(IPropostaRepository clienteRepository)
+        public PropostaService(IPropostaRepository clienteRepository, IClienteService clienteService)
         {
             _propostaRepository = clienteRepository;
+            _clienteService = clienteService;
         }
 
         public async Task<PropostaViewModel> CriarPropostaAsync(CriarPropostaInputModel inputModel)
         {
-            Proposta proposta = new Proposta(inputModel.ClienteId, inputModel.ValorCredito, EPropostaStatus.AguardandoAnalise);
-            await _propostaRepository.RemoverAsync(proposta);
+            Proposta proposta = new Proposta(inputModel.ClienteId, inputModel.ValorCredito, EPropostaStatus.AguardandoAnalise, inputModel.DataProposta);
+            await _propostaRepository.CriarAsync(proposta);
 
             return new PropostaViewModel(proposta);
         }
@@ -63,7 +67,7 @@ namespace creditflow.services.creditproposal.application.Services.Implementation
 
         public async Task<Guid> RemoverPropostaAsync(Guid id)
         {
-            await _propostaRepository.DeleteAsync(id);
+            await _propostaRepository.RemoverAsync(id);
             return id;
         }
 
@@ -77,7 +81,7 @@ namespace creditflow.services.creditproposal.application.Services.Implementation
             }
 
             proposta.AtualizarValor(inputModel.ValorCredito);
-            await _propostaRepository.UpdateAsync(proposta);
+            await _propostaRepository.AtualizarAsync(proposta);
             return new PropostaViewModel(proposta);
         }
 
@@ -90,10 +94,12 @@ namespace creditflow.services.creditproposal.application.Services.Implementation
                 throw new PropostaNotFoundException();
             }
 
-            proposta.Aceitar();
-            await _propostaRepository.UpdateAsync(proposta);
 
-            // Enviar mensagem para o service de cliente
+            PropostaDTO propostaDto = new PropostaDTO(proposta.ClienteId, proposta.ValorCredito, proposta.DataProposta);
+            await _clienteService.NotificarPropostaAceita(propostaDto);
+
+            proposta.Aceitar();
+            await _propostaRepository.AtualizarAsync(proposta);
 
             return new PropostaViewModel(proposta);
         }
@@ -108,7 +114,7 @@ namespace creditflow.services.creditproposal.application.Services.Implementation
             }
 
             proposta.Negar();
-            await _propostaRepository.UpdateAsync(proposta);
+            await _propostaRepository.AtualizarAsync(proposta);
             return new PropostaViewModel(proposta);
         }
     }
