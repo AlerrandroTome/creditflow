@@ -7,11 +7,11 @@ namespace creditflow.services.client.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase
+    public class ClienteController : ControllerBase
     {
         private readonly IClienteService _clientService;
 
-        public ClientController(IClienteService clientService)
+        public ClienteController(IClienteService clientService)
         {
             _clientService = clientService;
         }
